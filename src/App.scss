@@ -1,0 +1,10 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "assets/scss/variables";
+@import "assets/scss/main";
+@import "views/Login/login";
+@import "components/Header/header";
+@import "views/Dashboard/dashboard";
+@import "views/Dashboard/DataTable/dataTable";
+@import "views/settings/settings";
+@import "views/subsidiaries/subsidiaries";
+@import "views/subsidiaries/singleModel/subsidiaryForm";

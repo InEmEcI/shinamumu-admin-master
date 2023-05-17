@@ -1,0 +1,49 @@
+.dataTable {
+  padding: 30px;
+}
+
+.custom-table {
+  margin-top: 30px;
+
+  table {
+    border: unset;
+    thead {
+      tr {
+        border-bottom: 1px solid $main-color;
+        color: $sub-color;
+        font-size: 17px;
+        font-weight: 600;
+      }
+    }
+    tbody tr{
+      background-color: transparent !important;
+      transition: all .4s ease-in-out;
+      cursor: pointer;
+      border-bottom: 1px solid $table-border;
+
+      td {
+        padding: 20px 12px ;
+      }
+
+      &:hover {
+        background-color: $table-hover !important;
+      }
+    }
+    th, td {
+      border: unset !important;
+    }
+  }
+}
+.infoPanel {
+  background: $blocks-bg;
+  margin: 15px 0;
+  border-radius: 9px;
+  padding:  25px 30px;
+
+  .ccount {
+    color: $sub-color;
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+}

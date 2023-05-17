@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/Jost-Medium.ttf");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/Jost-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+body {
+  background-color: $body-bg;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: $text-color;
+}
+
+
+a {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+    text-decoration: unset;
+  }
+}
+
+h2 {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 0;
+}
+.btn-custom {
+  background: $main-color;
+  border: unset;
+  padding: 17px 0;
+  color: #fff;
+  font-weight: 600;
+  min-width: 260px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 20px;
+
+  &:hover, &:focus, &:active {
+    background: $sub-color !important;
+    box-shadow: unset !important;
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.map-icon {
+  width: 17px !important;
+  height: 20px !important;
+  position: absolute;
+  right: 5px;
+  bottom: 8px;
+
+}
+.dadata-inp {
+  .react-dadata__input {
+    padding-right: 30px;
+  }
+}

@@ -1,0 +1,57 @@
+include: 'https://gitlab.com/gitlab-cd/ssh-template/raw/master/ssh.yml'
+
+#Variables
+# REMOTE_DIR REMOTE_HOST REMOTE_USER SSH_PRIVATE_KEY $ENV_FILE
+stages:
+  - build
+  - deploy
+
+.master_environment:
+  environment:
+    name: master
+    url: https://shinomumu-admin-master.netstack.ru
+
+.develop_environment:
+  environment:
+    name: develop
+    url: https://shinomumu-admin-develop.netstack.ru
+
+.deploy_template:
+  image: alpine:3.11
+  stage: deploy
+  variables:
+    SSH_PARAMS: $GREMOTE_USER $GREMOTE_HOST
+  script:
+    - apk update && apk add openssh
+    - echo $SSH_PARAMS
+    - ssh_run $SSH_PARAMS "$GSSH_PRIVATE_KEY" "cd $REMOTE_DIR && git fetch origin && git reset --hard origin/$CI_COMMIT_REF_SLUG"
+    - ssh_run $SSH_PARAMS "$GSSH_PRIVATE_KEY" "cd $REMOTE_DIR && npm ci"
+    - ssh_run $SSH_PARAMS "$GSSH_PRIVATE_KEY" "cd $REMOTE_DIR && npm run build"
+
+.deploy_develop_template:
+  image: alpine:3.11
+  stage: deploy
+  variables:
+    SSH_PARAMS: $GREMOTE_USER $GREMOTE_HOST
+  script:
+    - apk update && apk add openssh
+    - echo $SSH_PARAMS
+    - ssh_run $SSH_PARAMS "$GSSH_PRIVATE_KEY" "cd $REMOTE_DIR && git fetch origin && git reset --hard origin/$CI_COMMIT_REF_SLUG"
+    - ssh_run $SSH_PARAMS "$GSSH_PRIVATE_KEY" "cd $REMOTE_DIR && npm ci"
+    - ssh_run $SSH_PARAMS "$GSSH_PRIVATE_KEY" "cd $REMOTE_DIR && npm run build"
+
+
+
+deploy dev:
+  extends:
+    - .deploy_develop_template
+    - .develop_environment
+  only:
+    - develop
+
+deploy master:
+  extends:
+    - .deploy_template
+    - .master_environment
+  only:
+    - master

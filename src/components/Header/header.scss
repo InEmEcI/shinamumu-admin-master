@@ -1,0 +1,42 @@
+header  {
+  height: 60px;
+  padding: 12px 0;
+  background: $blocks-bg;
+  display: flex;
+  align-items: center;
+
+  a {
+    font-size: 17px;
+  }
+  .user-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 17px;
+    button {
+      background: transparent;
+      color: $text-color;
+      border: unset;
+      box-shadow: unset;
+
+      &:hover, &:focus {
+        background: transparent !important;
+        color: $text-color !important;
+        box-shadow: unset !important;
+      }
+    }
+
+    .user-photo {
+      width: 36px;
+      height: 36px;
+      background: #07A8D6;
+      border-radius: 50%;
+      flex-shrink: 0;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
